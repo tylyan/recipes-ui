@@ -1,0 +1,18 @@
+<div class="form-group">
+  <h3 class="d-inline-block">Steps</h3><span class="link-style ml-2" href="#" onclick="return false;" (click)="bulkAdd=!bulkAdd">bulk add</span>
+  <div *ngIf="!bulkAdd; else showBulkAdd">
+    <p *ngIf="steps.length < 1; else stepsList">
+      Add at least 1 step.
+    </p>
+    <ng-template #stepsList>
+      <app-list-group [items]="steps" [isSteps]="true" (updated)="stepBox.focus()"></app-list-group>
+    </ng-template>
+    <div class="input-group mt-3">
+      <input #stepBox type="text" class="form-control" id="stepBox" placeholder="In a mixing bowl..." tabindex="3" (keyup.enter)="addStep(stepBox.value); stepBox.value=''">
+      <button type="button" class="btn btn-primary input-group-append" tabindex="3" (click)="addStep(stepBox.value); stepBox.value=''">Add Step</button>
+    </div>
+  </div>
+  <ng-template #showBulkAdd class="input-group mt-3">
+    <app-bulk-add-form [category]="'Steps'" [items]="steps" (added)="addSteps($event); bulkAdd=!bulkAdd"></app-bulk-add-form>
+  </ng-template>
+</div>

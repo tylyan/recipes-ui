@@ -1,0 +1,13 @@
+<h2 [hidden]="recipes.length">
+	No Recipes Found
+</h2>
+<div *ngFor="let letter of alphabet | sortAlphabet">
+	<h3>{{letter}}</h3>
+	<div class="list-group list-group-flush">
+		<a *ngFor="let recipe of recipes | filterRecipeByFirstChar:letter"
+			[routerLink]="['/recipe/view', recipe.name.toLowerCase()]"
+			class="list-group-item list-group-item-action">
+				{{recipe.name}}
+		</a>
+	</div>
+</div>

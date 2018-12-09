@@ -1,0 +1,2 @@
+<textarea #itemsBox class="form-control noresize" rows="{{rows}}" id="bulkAdd{{category}}" value="{{value}}" (blur)="addItems(itemsBox.value); itemsBox.value=''"></textarea>
+<button type="button" class="btn btn-primary mt-1" (click)="addItems(itemsBox.value); itemsBox.value=''">Add {{category}}</button>

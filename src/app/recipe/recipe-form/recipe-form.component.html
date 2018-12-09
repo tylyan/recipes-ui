@@ -1,0 +1,40 @@
+<form id="recipeForm">
+  <div class="form-group d-flex align-items-center">
+    <h1 class="d-inline-block my-0">{{recipe.name}}</h1>
+    <i class="fas fa-pencil-alt btn text-primary" data-toggle="modal" data-target="#nameModal"></i>
+  </div>
+  <!-- Tags -->
+  <app-tags-form [tags]="recipe.tags"></app-tags-form>
+  <!-- Ingredients -->
+  <app-ingredient-form [ingredients]="recipe.ingredients" (bulkAdded)="recipe.ingredients=$event"></app-ingredient-form>
+  <!-- Steps -->
+  <app-steps-form [steps]="recipe.steps" (bulkAdded)="recipe.steps=$event"></app-steps-form>
+  <!-- Notes -->
+  <app-notes-form [notes]="recipe.notes" (bulkAdded)="recipe.notes=$event"></app-notes-form>
+  
+  <div class="mt-5">
+    <button type="button" class="btn btn-primary" tabindex="5" (click)="submit()">Submit</button>
+    <button type="button" class="btn btn-secondary ml-2" tabindex="5" (click)="back()">Cancel</button>
+  </div>
+</form>
+
+<!-- Modal -->
+<div class="modal fade" id="nameModal" tabindex="-1" role="dialog" aria-labelledby="nameModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="nameModalTitle">Recipe Name</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input #nameBox type="text" class="form-control" id="nameBox" value="{{recipe.name}}" placeholder="My New Recipe" (keyup.enter)="changeName(nameBox.value); hideModal()">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="changeName(nameBox.value)">Save</button>
+        <button type="button" class="btn btn-secondary ml-1" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

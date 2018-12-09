@@ -1,1 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+.list-group-item {
+	padding: .5rem 1rem;
+}
+
+.link-style {
+	cursor:pointer !important;
+	color:#007bff !important;
+}
+
+.link-style:hover {
+	text-decoration:underline !important;
+	color:#0056b3 !important;
+}

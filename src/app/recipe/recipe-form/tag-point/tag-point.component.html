@@ -1,0 +1,7 @@
+<input [hidden]="!editing" class="w-100" #inputBox type="text" value="{{item}}" (blur)="updateItem(inputBox.value)" (keyup.enter)="inputBox.blur()">
+{{ inputBox.select() }}
+<span *ngIf="!editing">
+	<span class="p-1">{{item}}</span>
+	<i class="fas fa-pencil-alt btn btn-sm text-primary" (click)="editItem()"></i>
+	<i class="fas fa-times btn btn-sm text-danger" (click)="removeItem(item)"></i>
+</span>

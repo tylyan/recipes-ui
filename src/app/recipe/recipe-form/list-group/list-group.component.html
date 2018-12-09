@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <li *ngFor="let item of items; let i = index" class="list-group-item">
+    <div class="d-flex align-items-center">
+      <div class="d-inline-block mr-3">
+        <i class="fas fa-chevron-up d-block btn p-0 text-primary" (click)="moveUp(i)"></i>
+        <i class="fas fa-chevron-down d-block btn p-0 text-primary" (click)="moveDown(i)"></i>
+      </div>
+      <app-item-point class="w-100" [item]="item" (removed)="removeItem($event)" (updated)="updateItem($event)">{{item | listNumbers:isSteps:i}}</app-item-point>
+    </div>
+  </li>
+</ul>

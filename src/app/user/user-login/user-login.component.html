@@ -1,0 +1,40 @@
+<form class="form-signin" method="POST" action="#" role="form">
+  <div class="form-group">
+      <h2>Login</h2>
+  </div>
+  <div *ngIf="errorMessage!=null" class="alert alert-danger">
+      {{ errorMessage }}
+  </div>
+  <div *ngIf="!mfaStep">
+      <div class="form-group">
+          <label class="control-label" for="signupEmail">Email</label>
+          <input id="signupEmail" required type="email" maxlength="100" class="form-control" [(ngModel)]="email"
+                 [ngModelOptions]="{standalone: true}">
+      </div>
+
+      <div class="form-group">
+          <label class="control-label" for="signupPassword">Password</label>
+          <input id="signupPassword" required type="password" maxlength="25" class="form-control"
+                 length="40" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="form-group">
+          <button (click)="onLogin()" id="signupSubmit" type="submit" class="btn btn-primary btn-block">
+              Login
+          </button>
+      </div>
+      <div class="text-center">
+          <a class="mx-2" [routerLink]="['/user/register']">Register</a>
+          <a class="mx-2" [routerLink]="['/user/forgotPassword']">Forgot Password?</a>
+          <a class="mx-2" [routerLink]="['/user/resendCode']">Resend Confirmation Code</a>
+      </div>
+
+  </div>
+
+  <div class="form-group" *ngIf="mfaStep">
+      <!-- <awscognito-mfa [destination]="mfaData.destination"
+                      (Submit)="mfaData.callback"></awscognito-mfa> -->
+      <hr>
+      <a (click)="cancelMFA()" href="">Cancel</a>
+  </div>
+</form>
+

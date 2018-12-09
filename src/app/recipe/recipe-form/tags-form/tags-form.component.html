@@ -1,0 +1,10 @@
+<div class="form-group">
+  <h3>Tags</h3>
+  <span *ngFor="let tag of tags" class="d-inline-block my-1">
+    <app-tag-point class="border border-secondary rounded p-1 mx-1" [item]="tag" (removed)="removeTag($event)" (updated)="updateTag($event)"></app-tag-point>
+  </span>
+  <div class="input-group mt-3">
+    <input #tagBox type="text" class="form-control" id="tagBox" placeholder="breakfast, healthy, eggs, ..." tabindex="1" (keyup.enter)="addTag(tagBox.value); tagBox.value=''">
+    <button type="button" class="btn btn-primary input-group-append" tabindex="1" (click)="addTag(tagBox.value); tagBox.value=''">Add Tag</button>
+  </div>
+</div>

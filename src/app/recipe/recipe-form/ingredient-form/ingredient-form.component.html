@@ -1,0 +1,18 @@
+<div class="form-group">
+  <h3 class="d-inline-block">Ingredients</h3><span class="link-style ml-2" href="#" onclick="return false;" (click)="bulkAdd=!bulkAdd">bulk add</span>
+  <div *ngIf="!bulkAdd; else showBulkAdd">
+    <p *ngIf="ingredients.length < 1; else ingredientList">
+      Add at least 1 ingredient.
+    </p>
+    <ng-template #ingredientList>
+      <app-list-group [items]="ingredients" (updated)="ingredientBox.focus()"></app-list-group>
+    </ng-template>
+    <div class="input-group mt-3">
+      <input #ingredientBox type="text" class="form-control" id="ingredientBox" placeholder="3 tbps butter" tabindex="2" (keyup.enter)="addIngredient(ingredientBox.value);   ingredientBox.value=''">
+      <button type="button" class="btn btn-primary input-group-append" tabindex="2" (click)="addIngredient(ingredientBox.value); ingredientBox.value=''">Add Ingredient</button>
+    </div>
+  </div>
+  <ng-template #showBulkAdd class="input-group mt-3">
+    <app-bulk-add-form [category]="'Ingredients'" [items]="ingredients" (added)="addIngredients($event); bulkAdd=!bulkAdd"></app-bulk-add-form>
+  </ng-template>
+</div>
